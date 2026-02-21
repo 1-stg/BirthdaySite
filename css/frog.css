@@ -22,79 +22,76 @@ body {
 /* slide-1 start */
 
 #frog-speak {
+    box-sizing: border-box;
     user-select: none;
+    padding: 40px;
     width: 100dvw;
     height: 100dvh;
-    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+    /* position: relative; */
     background-image: url('../assets/frogBackground.jpg');
 }
 
 .frog-speak-container {
-    font-size: clamp(1rem, 2vw + 1rem, 1rem);
-    width: 80%;
+    width: 100%;
+    height: 100%;
+    gap: 2%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: absolute;
+    /* position: absolute; */
     /* position: relative; */
-    bottom: 0;
-    left: 0;
+    /* bottom: 0; */
+    /* left: 0; */
 }
 
 .frog-speak_img {
-    width: 60%;
-    height: 60%;
+    width: 50%;
+    height: 50%;
     cursor: pointer;
-}
-
-.frog-speak_img_2 {
-    width: 40%;
-    height: 60%;
-    cursor: pointer;
-    position: absolute;
-    bottom: 0;
-    right: 10%;
 }
 
 .typewriter {
-    position: absolute;
-    top: -10%;
-    left: 50%;
-    text-align: left;
-    max-width: 70%;
+    font-size: 3rem;
+    width: 80%;
+    height: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     border-radius: 20px;
-    /* outline: 2px solid rgb(45, 193, 0);
-    outline-offset: 2px; */
     padding: 10px;
     background-color: rgb(255, 255, 255);
     transition: all 0.3s ease-in-out;
 }
 
 @media (max-width: 1024px) {
+    #frog-speak {
+        flex-direction: column;
+        height: 100%;
+    }
+
     .frog-speak-container {
-        position: static;
-        /* display: block; */
         gap: 20px;
         width: 100dvw;
         height: 50dvh;
+    }
+
+    .reverse {
+        flex-direction: column-reverse;
     }
 
     .typewriter {
         max-width: 80%;
         position: static;
         text-align: center;
+        font-size: 1rem;
         /* top: 0; */
         /* right: -50%; */
-    }
-
-    .frog-speak_img_2 {
-        width: 80%;
-        height: 60%;
-        cursor: pointer;
-        position: absolute;
-        bottom: 0;
-        right: 10%;
     }
 
 }

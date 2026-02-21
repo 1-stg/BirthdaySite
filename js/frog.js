@@ -11,9 +11,151 @@ createApp({
             isAnimating: false, // Флаг для анимации рта
             timeouts: [],
             typingInterval: null, // Интервал для печатания текста
+            activeRedFrog: 'assets/sleepRedFrog.png',
+            frogRedMessage: ["Z...Z...Z", "Жоско поздравляю с дршкой❤️", ":)"],
+            messageRedCount: 0,
+            displayedRedText: "Z...Z...Z...", // Текст, который отображается посимвольно
+            isRedSpeaking: false,
+            isRedAnimating: false, // Флаг для анимации рта
+            timeoutsRed: [],
+            typingRedInterval: null, // Интервал для печатания текста
+
+
+            isModal: true,
+            isClosed: false,
         }
     },
     methods: {
+
+        closeModal() {
+            this.isClosed = true;
+            setTimeout(() => {
+                this.isModal = false;
+            },500)
+
+        },
+
+        // Жабы
+
+        clearAlltimeoutsRed() {
+            this.timeoutsRed.forEach(timeout => clearTimeout(timeout));
+            this.timeoutsRed = [];
+        },
+
+        clearAllIntervalsRed() {
+            if (this.typingRedInterval) {
+                clearInterval(this.typingRedInterval);
+                this.typingRedInterval = null;
+            }
+        },
+
+        toggleFrogRed() {
+            this.activeRedFrog = this.activeRedFrog == 'assets/CloseRedFrog.png'
+                ? 'assets/OpenRedFrog.png'
+                : 'assets/CloseRedFrog.png';
+        },
+
+        // Непрерывная анимация рта
+        startMouthAnimationRed() {
+            if (this.isRedAnimating) return;
+
+            this.isRedAnimating = true;
+
+            const animateRed = () => {
+                if (!this.isRedAnimating) return;
+
+                this.toggleFrogRed();
+
+                // Продолжаем анимацию пока флаг активен
+                this.timeoutsRed.push(setTimeout(animateRed, 300));
+            };
+
+            // Запускаем анимацию
+            this.timeoutsRed.push(setTimeout(animateRed, 300));
+        },
+
+        stopMouthAnimationRed() {
+            this.isRedAnimating = false;
+            // Закрываем рот в конце
+            this.activeRedFrog = 'assets/CloseRedFrog.png';
+        },
+
+        // Посимвольная печать текста
+        async typeTextRed(text, callback) {
+            this.displayedRedText = "";
+
+            return new Promise((resolve) => {
+                let index = 0;
+
+                this.typingRedInterval = setInterval(() => {
+                    if (index < text.length) {
+                        this.displayedRedText += text[index];
+                        index++;
+                    } else {
+                        // Текст напечатан полностью
+                        clearInterval(this.typingRedInterval);
+                        this.typingRedInterval = null;
+                        if (callback) callback();
+                        resolve();
+                    }
+                }, 100); // Скорость печати - 100мс на символ
+            });
+        },
+
+        async speakFrogRed() {
+            // Если жаба говорит - игнорируем клик
+            if (this.isRedSpeaking) {
+                return;
+            }
+
+            this.isRedSpeaking = true;
+            this.clearAlltimeoutsRed();
+            this.clearAllIntervalsRed();
+
+            // Определяем следующее сообщение
+            const nextMessageIndex = this.messageRedCount + 1;
+
+            // Если дошли до конца или жаба спит - начинаем сначала
+            if (nextMessageIndex >= this.frogRedMessage.length || this.messageRedCount === 0) {
+                this.messageRedCount = 1; // Пропускаем "Z...Z...Z", начинаем с "Привет"
+            } else {
+                this.messageRedCount = nextMessageIndex;
+            }
+
+            const currentMessage = this.frogRedMessage[this.messageRedCount];
+
+            // Меняем картинку на закрытый рот перед началом разговора
+            this.activeRedFrog = 'assets/CloseRedFrog.png';
+
+            // Небольшая задержка перед началом
+            await new Promise(resolve => setTimeout(resolve, 100));
+
+            // Запускаем анимацию рта
+            this.startMouthAnimationRed();
+
+            // Запускаем печать текста
+            await this.typeTextRed(currentMessage);
+
+            // Текст напечатан, останавливаем анимацию рта
+            this.stopMouthAnimationRed();
+
+            // Если это было последнее сообщение
+            if (this.messageRedCount >= this.frogRedMessage.length - 1) {
+                // Ждем немного и засыпаем
+                setTimeout(() => {
+                    this.messageRedCount = 0;
+                    this.displayedRedText = "Z...Z...Z...";
+                    this.activeRedFrog = 'assets/sleepRedFrog.png';
+                    this.isRedSpeaking = false;
+                }, 400)
+            } else {
+                // Просто заканчиваем разговор
+                setTimeout(() => {
+                    this.isRedSpeaking = false;
+                }, 500);
+            }
+        },
+
         clearAllTimeouts() {
             this.timeouts.forEach(timeout => clearTimeout(timeout));
             this.timeouts = [];
@@ -124,7 +266,7 @@ createApp({
                     this.displayedText = "Z...Z...Z...";
                     this.activeFrog = 'assets/frog-3_sleep.png';
                     this.isSpeaking = false;
-                }, 1000);
+                }, 400)
             } else {
                 // Просто заканчиваем разговор
                 setTimeout(() => {
