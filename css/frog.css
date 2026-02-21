@@ -1,0 +1,113 @@
+/* base css start */
+
+body {
+    margin: 0;
+    font-family: 'Times New Roman', Times, serif;
+    overflow-x: hidden;
+}
+
+.pt-5 {
+    padding-top: 50px;
+}
+
+.pb-3 {
+    padding-bottom: 30px;
+}
+
+/* base css end */
+
+
+
+
+/* slide-1 start */
+
+#frog-speak {
+    user-select: none;
+    width: 100dvw;
+    height: 100dvh;
+    position: relative;
+    background-image: url('../assets/frogBackground.jpg');
+}
+
+.frog-speak-container {
+    font-size: clamp(1rem, 2vw + 1rem, 1rem);
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    /* position: relative; */
+    bottom: 0;
+    left: 0;
+}
+
+.frog-speak_img {
+    width: 60%;
+    height: 60%;
+    cursor: pointer;
+}
+
+.frog-speak_img_2 {
+    width: 40%;
+    height: 60%;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    right: 10%;
+}
+
+.typewriter {
+    position: absolute;
+    top: -10%;
+    left: 50%;
+    text-align: left;
+    max-width: 70%;
+    border-radius: 20px;
+    /* outline: 2px solid rgb(45, 193, 0);
+    outline-offset: 2px; */
+    padding: 10px;
+    background-color: rgb(255, 255, 255);
+    transition: all 0.3s ease-in-out;
+}
+
+@media (max-width: 1024px) {
+    .frog-speak-container {
+        position: static;
+        /* display: block; */
+        gap: 20px;
+        width: 100dvw;
+        height: 50dvh;
+    }
+
+    .typewriter {
+        max-width: 80%;
+        position: static;
+        text-align: center;
+        /* top: 0; */
+        /* right: -50%; */
+    }
+
+    .frog-speak_img_2 {
+        width: 80%;
+        height: 60%;
+        cursor: pointer;
+        position: absolute;
+        bottom: 0;
+        right: 10%;
+    }
+
+}
+
+
+/* @keyframes typing {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+} */
+
+/* slide-1 end */

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С ДРШКОЙ:)</title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"
+        defer></script> -->
+    <link rel="stylesheet" href="css/frog.css">
+    <link rel="stylesheet" href="css/otkritki.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="js/frog.js" defer></script>
+</head>
+
+<body>
+    <div id="app">
+        <header></header>
+        <main>
+            <section id="frog-speak">
+                <div class="frog-speak-container">
+                    <img :src="activeFrog" class="frog-speak_img" alt="Говорящая жабка" @click="speakFrog">
+                    <div class="typewriter">{{ displayedText }}</div>
+                </div>
+                <img src="assets/frog-3_sleep-2.png" class="frog-speak_img_2" alt="Говорящая жабка">
+            </section>
+            <section id="otkritki" class="pt-5 pb-3">
+                <div class="gallery">
+                    <div class="card"><img src="assets/otkritki/1.png" alt="1"></div>
+                    <div class="card"><img src="assets/otkritki/2.png" alt="2"></div>
+                    <div class="card"><img src="assets/otkritki/3.png" alt="3"></div>
+                    <div class="card"><img src="assets/otkritki/4.png" alt="4"></div>
+                    <div class="card"><img src="assets/otkritki/5.png" alt="5"></div>
+                    <div class="card"><img src="assets/otkritki/6.png" alt="6"></div>
+                    <div class="card"><img src="assets/otkritki/7.png" alt="7"></div>
+                    <div class="card"><img src="assets/otkritki/8.png" alt="8"></div>
+                    <div class="card"><img src="assets/otkritki/9.png" alt="9"></div>
+                    <div class="card"><img src="assets/otkritki/10.png" alt="10"></div>
+                    <div class="card"><img src="assets/otkritki/11.png" alt="11"></div>
+                    <div class="card"><img src="assets/otkritki/12.png" alt="12"></div>
+                </div>
+            </section>
+            <section id="letter">
+                <img src="assets/letter.png" alt="" style="width: 100dvw; height: 100%;">
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

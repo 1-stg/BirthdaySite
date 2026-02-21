@@ -1,0 +1,52 @@
+#otkritki {
+    background-image: url('../assets/otkritki/background.png');
+}
+
+#letter {
+    padding: 0;
+    margin: 0;
+    background-image: url('../assets/otkritki/background2.png');
+}
+
+.letter_container {
+    margin: 0 20px;
+    border-radius: 20px;
+    padding: 20px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.gallery {
+  column-count: 4;
+  column-gap: 15px;
+  width: 90%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.card {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 15px;
+  break-inside: avoid;
+  overflow: hidden;
+  border-radius: 20px;
+  
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+
+@media (max-width: 900px) {
+  .gallery { column-count: 3; }
+}
+@media (max-width: 600px) {
+  .gallery { column-count: 2; }
+}
